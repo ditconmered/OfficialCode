@@ -5,7 +5,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -20,7 +19,9 @@ public class LIDARCommand extends CommandBase {
     try{
       RobotContainer.lidarSubsystem.initLIDAR(new DigitalInput(Constants.DIO.LIDAR_PORT));
     }
-    catch(Exception e){}
+    catch(Exception e){
+      
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
