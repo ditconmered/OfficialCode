@@ -18,6 +18,7 @@ import frc.robot.commands.AutoNav;
 
 import frc.robot.commands.Crash;
 import frc.robot.commands.GalasticSearchRed2;
+import frc.robot.commands.GoStraight;
 import frc.robot.commands.Load;
 import frc.robot.commands.Open;
 import frc.robot.commands.Shoot;
@@ -37,6 +38,8 @@ import frc.robot.subsystems.LIDAR;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
+
 import static frc.robot.Constants.STICK_CONST.*;
 
 import java.time.Year;
@@ -63,8 +66,13 @@ public class RobotContainer {
   // public final Piston piston = new Piston();
   public final Loader loader = new Loader();
   public final Hood hood = new Hood();
-  Command shoot = new Shoot(shooter);
+<<<<<<< HEAD
+=======
   
+
+>>>>>>> 687b4a223cf7e337ab1c27066b7d3ed2bc330499
+  Command shoot = new Shoot(shooter);
+  Command GoStraight = new GoStraight(drivebase, 0.5);
   Command suck = new Suck(sucker, 0.6);
   Command spit = new Suck(sucker, -0.7);
   Command spin = new Spin(WOD, 0.4);
@@ -95,7 +103,7 @@ public class RobotContainer {
     new JoystickButton(xbox, YELLOW).whileActiveOnce(AngleUp);
     new JoystickButton(xbox, RED).whileActiveOnce(AngleDown);
     new JoystickButton(xbox, BLUE).whileActiveOnce(Unload);
-
+    new POVButton(logitech, 0).whileActiveOnce(GoStraight);
     new JoystickButton(logitech, YELLOW).whileActiveOnce(Close);
     new JoystickButton(xbox, L1).whileActiveOnce(Load);
     new JoystickButton(logitech, RED).whileActiveOnce(spinR);

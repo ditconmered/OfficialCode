@@ -45,6 +45,8 @@ public class Drivebase extends SubsystemBase {
     rightFollow.follow(rightMaster);
     leftMaster.setInverted(true);
     leftFollow.setInverted(true);
+    a = leftMaster.getSensorCollection().getQuadraturePosition() / 4096;
+    b = rightMaster.getSensorCollection().getQuadraturePosition() / 4096;
   }
 
   // ByteBuffer buffer = ByteBuffer.allocate(16);
@@ -67,24 +69,32 @@ public class Drivebase extends SubsystemBase {
   private double x;
   private double y;
   private double z;
+  private double a;
+  private double b;
+
+  public double DistanceL() {
+    return leftMaster.getSensorCollection().getQuadraturePosition() / 4096;
+  }
+
+  public double DistanceR() {
+    return rightMaster.getSensorCollection().getQuadraturePosition() / 4096;
+  }
 
   @Override
   public void periodic() {
 
-     SmartDashboard.putNumber("distL",
-     leftFollow.getSensorCollection().getQuadraturePosition());
-     SmartDashboard.putNumber("distR",
-     rightMaster.getSensorCollection().getQuadraturePosition());
+    SmartDashboard.putNumber("distL", leftMaster.getSensorCollection().getQuadraturePosition() / 4096.0 - a);
+    SmartDashboard.putNumber("distR", rightMaster.getSensorCollection().getQuadraturePosition() / 4096 - b);
 
     if (RobotContainer.logitech.getRawAxis(2) > 0.5 && RobotContainer.logitech.getRawAxis(3) > 0.5) {
       drive(RobotContainer.logitech.getRawAxis(1) * 0.8, RobotContainer.logitech.getRawAxis(5) * 0.8);
 
     } else if (RobotContainer.logitech.getRawAxis(2) > 0.5) {
       SmartDashboard.putBoolean("turning left", true);
-      drive(RobotContainer.logitech.getRawAxis(1) * 0, RobotContainer.logitech.getRawAxis(5) * 1);
+      drive(RobotContainer.logitech.getRawAxis(1) * 0.2, RobotContainer.logitech.getRawAxis(5) * 01);
     } else if (RobotContainer.logitech.getRawAxis(3) > 0.5) {
       SmartDashboard.putBoolean("turning right", true);
-      drive(RobotContainer.logitech.getRawAxis(1) * 1, RobotContainer.logitech.getRawAxis(5) * 0
+      drive(RobotContainer.logitech.getRawAxis(1) * 1, RobotContainer.logitech.getRawAxis(5) * 0.2
 
       );
     } else {
