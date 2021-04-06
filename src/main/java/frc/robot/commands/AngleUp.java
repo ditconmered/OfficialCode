@@ -14,7 +14,7 @@ public class AngleUp extends CommandBase {
   private final Hood m_hood;
   private double x;
   private double a;
-  private double b;
+  private double gfb;
   private double spd;
   public AngleUp(Hood hood, double x) {
     m_hood = hood;

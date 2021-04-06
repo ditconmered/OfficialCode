@@ -57,11 +57,6 @@ public final class Constants {
         // degrees / 0.02s
         public static final double kToleranceAngularVelocity = 0.08;
     }
-
-    public static final class LIDAR_CONST {
-        public static final int LIDAR_ADDRESS = 0x62;
-        public static final int LIDAR_WRITE = 0xC4;
-        public static final int LIDAR_READ = 0xC5;
-
-    }
 }
+
+ 
