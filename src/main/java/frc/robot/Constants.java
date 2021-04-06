@@ -36,8 +36,8 @@ public final class Constants {
 
     public static final class DRIVE_CONST {
         public static final int LEFT_MASTER_CAN = 07;
-        public static final int LEFT_FOLLOW_CAN = 03;
-        public static final int RIGHT_MASTER_CAN = 05;
+        public static final int LEFT_FOLLOW_CAN = 05;
+        public static final int RIGHT_MASTER_CAN = 03;
         public static final int RIGHT_FOLLOW_CAN = 11;
         public static final int INTAKE_CAN = 13;
         public static final int SHOOTER_MASTER_CAN = 02;
