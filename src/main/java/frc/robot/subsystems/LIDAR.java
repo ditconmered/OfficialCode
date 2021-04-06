@@ -18,7 +18,7 @@ public class LIDAR extends SubsystemBase {
 
   /** Creates a new LIDAR. */
   public LIDAR() {
-    counter = new Counter(8);
+    counter = new Counter(9);
     counter.setMaxPeriod(1.0);
     // Configure for measuring rising to falling pulses
     counter.setSemiPeriodMode(true);
