@@ -59,6 +59,9 @@ public final class Constants {
     }
 
     public static final class LIDAR_CONST {
-        public static final int LIDAR_PORT = 0;
+        public static final int LIDAR_ADDRESS = 0x62;
+        public static final int LIDAR_WRITE = 0xC4;
+        public static final int LIDAR_READ = 0xC5;
+
     }
 }
