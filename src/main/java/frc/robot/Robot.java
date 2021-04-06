@@ -52,6 +52,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   AnalogInput analog = new AnalogInput(0);
+
   FileOutputStream writer;
 
   
