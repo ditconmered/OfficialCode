@@ -69,7 +69,7 @@ public class RobotContainer {
   Command shoot = new Shoot(shooter);
   Command GoStraight = new GoStraight(drivebase, 0.5);
   Command suck = new Suck(sucker, 0.6);
-  Command spit = new Suck(sucker, -0.7);
+  Command spit = new Suck(sucker, -0.6);
   Command spin = new Spin(WOD, 0.4);
   Command Open = new Open(opener, 0.5);
   Command Close = new Open(opener, -0.5);
