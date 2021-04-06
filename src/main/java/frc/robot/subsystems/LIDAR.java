@@ -5,19 +5,41 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.I2C.Port;
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalSource;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
+
+
 public class LIDAR extends SubsystemBase {
+  private static final int CALIBRATION_OFFSET = -18;
+
+  private Counter counter;
+  private int printedWarningCount = 5;
+
   /** Creates a new LIDAR. */
   public LIDAR() {
-   final I2C LIDAR = new I2C(Port.kOnboard, 0x62);
-   ByteBuffer buffer = ByteBuffer.allocate(16);
-   LIDAR.write(0x00, 0x04);
+    counter = new Counter(1);
+    counter.setMaxPeriod(1.0);
+    // Configure for measuring rising to falling pulses
+    counter.setSemiPeriodMode(true);
+    counter.reset();
+  }
+  public double getDistance() {
+    double cm;
+    /* If we haven't seen the first rising to falling pulse, then we have no measurement.
+     * This happens when there is no LIDAR-Lite plugged in, btw.
+     */
+    if (counter.get() < 1) {
+      if (printedWarningCount-- > 0) {
+        System.out.println("LidarLitePWM: waiting for distance measurement");
+      }
+      return 0;
+    }
+    /* getPeriod returns time in seconds. The hardware resolution is microseconds.
+     * The LIDAR-Lite unit sends a high signal for 10 microseconds per cm of distance.
+     */
+    cm = (counter.getPeriod() * 1000000.0 / 10.0) + CALIBRATION_OFFSET;
+    return cm;
   }
   @Override
   public void periodic() {

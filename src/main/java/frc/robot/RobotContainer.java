@@ -10,8 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.I2C.Port;
 import frc.robot.commands.AngleUp;
 import frc.robot.commands.AutoNav;
+
 
 import frc.robot.commands.Crash;
 import frc.robot.commands.GalasticSearchRed2;
@@ -31,6 +34,7 @@ import frc.robot.subsystems.Opener;
 import frc.robot.subsystems.Sucker;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.WheelOfDoom;
+import frc.robot.subsystems.LIDAR;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -58,11 +62,15 @@ public class RobotContainer {
   public final Shooter shooter = new Shooter();
   public final Sucker sucker = new Sucker();
   public final WheelOfDoom WOD = new WheelOfDoom();
+  public final LIDAR lidar = new LIDAR();
   // public final Piston piston = new Piston();
   public final Loader loader = new Loader();
   public final Hood hood = new Hood();
+<<<<<<< HEAD
+=======
   
 
+>>>>>>> 687b4a223cf7e337ab1c27066b7d3ed2bc330499
   Command shoot = new Shoot(shooter);
   Command GoStraight = new GoStraight(drivebase, 0.5);
   Command suck = new Suck(sucker, 0.6);
