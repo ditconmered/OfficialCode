@@ -18,14 +18,13 @@ public class LIDAR extends SubsystemBase {
 
   /** Creates a new LIDAR. */
   public LIDAR() {
-    counter = new Counter(1);
+    counter = new Counter(8);
     counter.setMaxPeriod(1.0);
     // Configure for measuring rising to falling pulses
     counter.setSemiPeriodMode(true);
     counter.reset();
   }
   public double getDistance() {
-    double cm;
     /* If we haven't seen the first rising to falling pulse, then we have no measurement.
      * This happens when there is no LIDAR-Lite plugged in, btw.
      */
@@ -38,7 +37,7 @@ public class LIDAR extends SubsystemBase {
     /* getPeriod returns time in seconds. The hardware resolution is microseconds.
      * The LIDAR-Lite unit sends a high signal for 10 microseconds per cm of distance.
      */
-    cm = (counter.getPeriod() * 1000000.0 / 10.0) + CALIBRATION_OFFSET;
+    double cm = (counter.getPeriod() * 1000000.0 / 10.0) + CALIBRATION_OFFSET;
     return cm;
   }
   @Override
@@ -46,3 +45,4 @@ public class LIDAR extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 }
+// j gay
