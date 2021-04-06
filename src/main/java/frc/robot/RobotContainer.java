@@ -66,11 +66,7 @@ public class RobotContainer {
   // public final Piston piston = new Piston();
   public final Loader loader = new Loader();
   public final Hood hood = new Hood();
-<<<<<<< HEAD
-=======
-  
 
->>>>>>> 687b4a223cf7e337ab1c27066b7d3ed2bc330499
   Command shoot = new Shoot(shooter);
   Command GoStraight = new GoStraight(drivebase, 0.5);
   Command suck = new Suck(sucker, 0.6);
