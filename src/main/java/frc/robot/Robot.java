@@ -15,19 +15,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.math.BigInteger;
-
 
 import javax.swing.plaf.synth.SynthStyle;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.I2C.Port;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,8 +29,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.WheelOfDoom;
 import frc.robot.subsystems.LIDAR;
-
-
 import frc.robot.Constants.STICK_CONST.*;
 import frc.robot.commands.Spin;
 
@@ -50,26 +42,21 @@ import frc.robot.commands.Spin;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-
   AnalogInput analog = new AnalogInput(0);
-
   FileOutputStream writer;
 
-  
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
    */
   @Override
   public void robotInit() {
-
-    
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our
     // autonomous chooser on the dashboard.
-
     m_robotContainer = new RobotContainer();
 
+    // LIDAR
 
   }
 
@@ -84,8 +71,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-     double dist = (m_robotContainer.lidar.getDistance());
-    SmartDashboard.putNumber("dist", dist);
+    SmartDashboard.putNumber("distance", m_robotContainer.lidar.getDistance());
     SmartDashboard.putNumber("analogValue", analog.getValue());
     SmartDashboard.putNumber("analogVolt", analog.getVoltage());
     SmartDashboard.putNumber("foo", SmartDashboard.getNumber("foo", 0) + 1);
@@ -97,7 +83,9 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods. This must be called from the
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
-  };
+    CommandScheduler.getInstance().run();
+
+  }
 
   /**
    * This function is called once each time the robot enters Disabled mode.
@@ -110,7 +98,7 @@ public class Robot extends TimedRobot {
     // try {
     // m_robotContainer.drivebase.writer.close();
     // } catch (IOException e) {
-    // // gfffffffffffffffffffffffffffffffffffff7TODO Auto-generated catch block
+    // // TODO Auto-generated catch block
     // e.printStackTrace();
     // } //
   }
