@@ -41,9 +41,7 @@ public class Gyro extends SubsystemBase {
   @Override
   public void periodic() {
     
-    SmartDashboard.putNumber("x",ahrs.getDisplacementX() );
-    SmartDashboard.putNumber("y",ahrs.getDisplacementY() );
-    SmartDashboard.putNumber("angle", ahrs.getYaw());
+    
     // This method will be called once per scheduler run
   }
 }

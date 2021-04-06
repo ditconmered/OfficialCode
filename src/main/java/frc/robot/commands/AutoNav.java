@@ -32,7 +32,7 @@ public class AutoNav extends CommandBase {
     try {
       reader = new FileInputStream("home/lvuser/path.txt");
       ByteBuffer bytes = ByteBuffer.wrap(reader.readAllBytes());
-      speeds = new double[bytes.array().length / 2][2];
+      speeds = new double[bytes.array().length / 16][2];
       for (int i = 0; i < speeds.length; i++) {
         speeds[i] = new double[]{bytes.getDouble(), bytes.getDouble()};
       }
@@ -44,7 +44,8 @@ public class AutoNav extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      double[] speed = speeds[index++];
+      double[] speed = speeds[index];
+      index++;
     drivebase.drive(speed);
   }
 

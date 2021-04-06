@@ -21,15 +21,15 @@ public class Hood extends SubsystemBase {
     //
   }
 
-  public void AngleUp() {
-    Hood.set(0.3);
-  }
-
-  public void AngleDown() {
-    Hood.set(-0.3);
+  public void Angle(double a) {
+    Hood.set(a);
   }
 
   public void stop() {
     Hood.stopMotor();
+  }
+
+  public double getAngle() {
+    return Hood.getSensorCollection().getQuadraturePosition();
   }
 }

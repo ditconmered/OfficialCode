@@ -19,13 +19,16 @@ import java.nio.ByteBuffer;
 
 import javax.swing.plaf.synth.SynthStyle;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.TimedRobot;
+
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.WheelOfDoom;
+import frc.robot.subsystems.LIDAR;
 import frc.robot.Constants.STICK_CONST.*;
 import frc.robot.commands.Spin;
 
@@ -39,10 +42,9 @@ import frc.robot.commands.Spin;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-
-  
+  AnalogInput analog = new AnalogInput(0);
   FileOutputStream writer;
-  
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -69,7 +71,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-
+    SmartDashboard.putNumber("distance", m_robotContainer.lidar.getDistance());
+    SmartDashboard.putNumber("analogValue", analog.getValue());
+    SmartDashboard.putNumber("analogVolt", analog.getVoltage());
     SmartDashboard.putNumber("foo", SmartDashboard.getNumber("foo", 0) + 1);
 
     // Runs the Scheduler. This is responsible for polling buttons, adding
@@ -88,15 +92,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
-   
-    if (m_robotContainer.drivebase.writer != null) {
-      try {
-        m_robotContainer.drivebase.writer.close();
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      } //
-    }
+
+    // if (m_robotContainer.drivebase.writer != null) {
+
+    // try {
+    // m_robotContainer.drivebase.writer.close();
+    // } catch (IOException e) {
+    // // TODO Auto-generated catch block
+    // e.printStackTrace();
+    // } //
   }
 
   @Override
@@ -124,7 +128,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    //
+    m_robotContainer.spit.schedule();
   }
 
   @Override
@@ -136,11 +140,12 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    try {
-      m_robotContainer.drivebase.writer = new FileOutputStream("home/lvuser/path.txt");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    // try {
+    // m_robotContainer.drivebase.writer = new
+    // FileOutputStream("home/lvuser/path.txt");
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
   }
 
   /**
@@ -148,6 +153,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    // SmartDashboard.putNumber("time", Timer.getFPGATimestamp());
 
     // m_wod.spin();
   }

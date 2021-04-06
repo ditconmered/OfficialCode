@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Hood;
@@ -12,24 +13,37 @@ import frc.robot.subsystems.WheelOfDoom;
 public class AngleUp extends CommandBase {
   private final Hood m_hood;
   private double x;
+  private double a;
+  private double gfb;
+  private double spd;
   public AngleUp(Hood hood, double x) {
     m_hood = hood;
     addRequirements(m_hood);
+    spd = x;
   }
-
+ 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (x > 0) {
-    m_hood.AngleUp();
-    }
-    else {m_hood.AngleDown();}
+    m_hood.Angle(spd);    
+    //  a = m_hood.getAngle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //
+    // b = m_hood.getAngle();
+    // SmartDashboard.putNumber("Angle", b);
+    // if (x > 0) {
+    //   while (b - a < x * 4096) {
+    //     m_hood.AngleUp();
+    //   }
+    // } else {
+    //   while (b - a > x * 4096) {
+    //     m_hood.AngleDown();
+    //   }
+    //   if (b - a == x * 4096) {m_hood.stop();}
+    // }
   }
 
   // Called once the command ends or is interrupted.
