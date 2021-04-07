@@ -52,7 +52,7 @@ public class RobotContainer {
   public static Joystick xbox = new Joystick(1);
   public static Joystick logitech = new Joystick(0);
   public final Shooter shooter = new Shooter();
-  public final LIDAR lidar = new LIDAR();
+  public static final LIDAR lidar = new LIDAR();
   public final Sucker sucker = new Sucker();
   public final WheelOfDoom WOD = new WheelOfDoom();
   // public final Piston piston = new Piston();
