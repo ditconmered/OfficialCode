@@ -23,6 +23,7 @@ import frc.robot.commands.Suck;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Loader;
+import frc.robot.subsystems.NetworkTableQuery;
 import frc.robot.subsystems.Opener;
 // import frc.robot.subsystems.Piston;
 import frc.robot.subsystems.Sucker;
@@ -55,6 +56,7 @@ public class RobotContainer {
   public static final LIDAR lidar = new LIDAR();
   public final Sucker sucker = new Sucker();
   public final WheelOfDoom WOD = new WheelOfDoom();
+  public final NetworkTableQuery mysql = new NetworkTableQuery();
   // public final Piston piston = new Piston();
   public final Loader loader = new Loader();
   public final Hood hood = new Hood();

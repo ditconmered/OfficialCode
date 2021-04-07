@@ -12,19 +12,20 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class NetworkTableQuery extends SubsystemBase {
   NetworkTableEntry lidarDist;
-  NetworkTableEntry active;
+  NetworkTableInstance inst = NetworkTableInstance.getDefault(); // init instance
+  NetworkTable table = inst.getTable("lidar");
+  double a;
+  double defaultValue = 0;
   /** Creates a new NetworkTableQuery. */
   public NetworkTableQuery() {
-    NetworkTableInstance inst = NetworkTableInstance.getDefault(); // init instance
-    NetworkTable table = inst.getTable("lidar");
     lidarDist = table.getEntry("distance");
-
   }
 
   @Override
   public void periodic() {
     double dist = RobotContainer.lidar.getDistance();
     lidarDist.setDouble(dist);
+    a = table.getEntry("Angle").getDouble(defaultValue);
     // This method will be called once per scheduler run
   }
 }
