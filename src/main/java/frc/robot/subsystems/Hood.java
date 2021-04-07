@@ -16,13 +16,16 @@ import frc.robot.RobotContainer;
 
 public class Hood extends SubsystemBase {
   public WPI_TalonSRX Hood = new WPI_TalonSRX(HOOD_CAN);
+  public WPI_VictorSPX HoodR = new WPI_VictorSPX(6);
 
   public Hood() {
-    //
+    // HoodR.follow(Hood);
+    // HoodR.setInverted(true);
+
   }
 
   public void Angle(double a) {
-    Hood.set(a);
+    HoodR.set(a);
   }
 
   public void stop() {

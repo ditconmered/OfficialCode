@@ -13,6 +13,7 @@ import frc.robot.commands.AngleUp;
 import frc.robot.commands.AutoNav;
 import frc.robot.commands.Crash;
 import frc.robot.commands.GalasticSearchRed2;
+import frc.robot.commands.GoStraight;
 import frc.robot.commands.Load;
 import frc.robot.commands.Open;
 import frc.robot.commands.Shoot;
@@ -31,8 +32,11 @@ import frc.robot.subsystems.WheelOfDoom;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
+
 import static frc.robot.Constants.STICK_CONST.*;
 import java.time.Year;
+
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -44,7 +48,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final Drivebase drivebase = new Drivebase();
   public final Opener opener = new Opener();
-  private final GalasticSearchRed2 m_autoCommand = new GalasticSearchRed2(drivebase,opener );
+  private final GalasticSearchRed2 m_autoCommand = new GalasticSearchRed2(drivebase, opener);
   public static Joystick xbox = new Joystick(1);
   public static Joystick logitech = new Joystick(0);
   public final Shooter shooter = new Shooter();
@@ -57,16 +61,19 @@ public class RobotContainer {
   Command shoot = new Shoot(shooter);
 
   Command suck = new Suck(sucker, 0.6);
-  Command spit = new Suck(sucker, -0.7);
-  Command spin = new Spin(WOD, 0.4);
+  Command spit = new Suck(sucker, -0.9);
+  Command spin = new Spin(WOD, 0.3);
   Command Open = new Open(opener, 0.5);
   Command Close = new Open(opener, -0.5);
-  Command AngleUp = new AngleUp(hood, 0.2);
-  Command AngleDown = new AngleUp(hood, -0.2);
+  Command AngleUp = new AngleUp(hood, 0.4);
+  Command AngleDown = new AngleUp(hood, -0.3);
   // Command PistonExtend = new PistonExtend(piston);
   Command Load = new Load(loader, 0.6);
   Command Unload = new Load(loader, -0.6);
-  Command spinR = new Spin(WOD, -0.4);
+  Command spinR = new Spin(WOD, -0.3);
+  Command GoUp = new GoStraight(drivebase, -0.5);
+  Command GoDown = new GoStraight(drivebase, 0.5);
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -74,6 +81,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
   }
+
   private void configureButtonBindings() {
     new JoystickButton(logitech, L1).whileActiveOnce(suck);
     new JoystickButton(logitech, R1).whileActiveOnce(spit);
@@ -87,7 +95,10 @@ public class RobotContainer {
     new JoystickButton(xbox, L1).whileActiveOnce(Load);
     new JoystickButton(logitech, RED).whileActiveOnce(spinR);
     new JoystickButton(xbox, 9).whenPressed(new Crash());
+    new POVButton(logitech, 0).whileActiveOnce(GoUp);
+    new POVButton(logitech, 180).whileActiveOnce(GoDown);
   }
+
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *

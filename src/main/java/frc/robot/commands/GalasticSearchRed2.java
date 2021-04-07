@@ -15,9 +15,9 @@ public class GalasticSearchRed2 extends SequentialCommandGroup {
 
   /** Creates a new Autonomous. */
   public GalasticSearchRed2(Drivebase drivebase, Opener opener) {
-    super(parallel(new Open(opener, 0.5).withTimeout(1), new Run(drivebase, 1, 1).withTimeout(0.5)),
-        new Run(drivebase, 0.35, 0.4).withTimeout(3), new RotateToAngle(drivebase, 140).withTimeout(2),
-        new Run(drivebase, 0.6, 0.6).withTimeout(1.4)
+    super(parallel(new Open(opener, 0.5).withTimeout(1), new GoStraight(drivebase, 0).withTimeout(0.1)),
+        new GoStraight(drivebase, -1).withTimeout(2), new GoStraight(drivebase, -0.2).withTimeout(0.5),
+        new RotateToAngle(drivebase, 130).withTimeout(2), new GoStraight(drivebase, -1).withTimeout(0.7)
 
     );
 
