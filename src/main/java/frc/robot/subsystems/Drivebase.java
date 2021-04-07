@@ -73,18 +73,18 @@ public class Drivebase extends SubsystemBase {
   private double b;
 
   public double DistanceL() {
-    return leftMaster.getSensorCollection().getQuadraturePosition() / 4096;
+    return leftMaster.getSensorCollection().getQuadraturePosition() / 4096.0;
   }
 
   public double DistanceR() {
-    return rightMaster.getSensorCollection().getQuadraturePosition() / 4096;
+    return rightMaster.getSensorCollection().getQuadraturePosition() / 4096.0;
   }
 
   @Override
   public void periodic() {
 
     SmartDashboard.putNumber("distL", leftMaster.getSensorCollection().getQuadraturePosition() / 4096.0 - a);
-    SmartDashboard.putNumber("distR", rightMaster.getSensorCollection().getQuadraturePosition() / 4096 - b);
+    SmartDashboard.putNumber("distR", rightMaster.getSensorCollection().getQuadraturePosition() / 4096.0 - b);
 
     if (RobotContainer.logitech.getRawAxis(2) > 0.5 && RobotContainer.logitech.getRawAxis(3) > 0.5) {
       drive(RobotContainer.logitech.getRawAxis(1) * 0.8, RobotContainer.logitech.getRawAxis(5) * 0.8);

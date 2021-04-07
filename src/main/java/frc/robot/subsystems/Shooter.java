@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import static frc.robot.Constants.DRIVE_CONST.*;
 
@@ -20,6 +21,8 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     shooterMaster.setInverted(true);
     shooterFOLLOW.follow(shooterMaster);
+    shooterFOLLOW.setNeutralMode(NeutralMode.Brake);
+    shooterMaster.setNeutralMode(NeutralMode.Brake);
   }
 
   public void shoot() {

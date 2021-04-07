@@ -14,35 +14,36 @@ public class AngleUp extends CommandBase {
   private final Hood m_hood;
   private double x;
   private double a;
-  private double gfb;
+  private double b;
   private double spd;
+
   public AngleUp(Hood hood, double x) {
     m_hood = hood;
     addRequirements(m_hood);
     spd = x;
   }
- 
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_hood.Angle(spd);    
-    //  a = m_hood.getAngle();
+    m_hood.Angle(0.2);
+    a = m_hood.getAngle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // b = m_hood.getAngle();
-    // SmartDashboard.putNumber("Angle", b);
+    b = m_hood.getAngle();
+    SmartDashboard.putNumber("Angle", b - a / 4096.0);
     // if (x > 0) {
-    //   while (b - a < x * 4096) {
-    //     m_hood.AngleUp();
-    //   }
+    // while (b - a < x * 4096) {
+    // m_hood.AngleUp();
+    // }
     // } else {
-    //   while (b - a > x * 4096) {
-    //     m_hood.AngleDown();
-    //   }
-    //   if (b - a == x * 4096) {m_hood.stop();}
+    // while (b - a > x * 4096) {
+    // m_hood.AngleDown();
+    // }
+    // if (b - a == x * 4096) {m_hood.stop();}
     // }
   }
 
@@ -55,6 +56,7 @@ public class AngleUp extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+
     return false;
   }
 }
