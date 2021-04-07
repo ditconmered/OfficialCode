@@ -8,8 +8,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.networktables.NetworkTableType;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import java.lang.Math;
+// import edu.wpi.first.networktables.NetworkTableType;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import org.apache.logging.log4j.LogManager;
 // import org.apache.logging.log4j.Logger;
 public class VisionMaster extends SubsystemBase {
@@ -17,10 +18,11 @@ public class VisionMaster extends SubsystemBase {
 
   private static VisionMaster instance;
   private NetworkTable visionTable;
-  public NetworkTableEntry portDist;
+  public NetworkTableEntry s;
   public VisionMaster() {
     visionTable = NetworkTableInstance.getDefault().getTable("vision"); // table
-    portDist = visionTable.getEntry("Port distance");
+    s = visionTable.getEntry("Port distance");
+    
 
   }
   public static VisionMaster getInstance() {
@@ -34,3 +36,19 @@ public class VisionMaster extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 }
+
+
+
+
+// public class VisionMaster extends SubsystemBase{
+//   public static NetworkTableEntry s;
+
+
+//   public void robotInit(){
+//     NetworkTableInstance inst = NetworkTableInstance.getDefault();
+
+//     NetworkTable table = inst.getTable("datatable");
+
+//     s = table.getEntry("Port distance");
+//   }
+// }
